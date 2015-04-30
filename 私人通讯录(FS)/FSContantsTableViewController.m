@@ -13,19 +13,19 @@
 
 //添加git
 
-@interface FSContantsTableViewController () <UIActionSheetDelegate, FSAddViewControllerDeldgate, FSContantTableViewCellDelegate, FSEditViewControllerDelegate>
+@interface FSContantsTableViewController () <UIActionSheetDelegate, FSAddViewControllerDeldgate, FSEditViewControllerDelegate>
 
-@property (strong, nonatomic) NSMutableArray *contantCells;
+@property (strong, nonatomic) NSMutableArray *contants;
 
 @end
 
 @implementation FSContantsTableViewController
 
-- (NSMutableArray *)contantCells {
-    if (_contantCells == nil) {
-        _contantCells = [NSMutableArray array];
+- (NSMutableArray *)contants {
+    if (_contants == nil) {
+        _contants = [NSMutableArray array];
     }
-    return _contantCells;
+    return _contants;
 }
 
 - (void)viewDidLoad {
@@ -36,6 +36,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 //注销点击
@@ -64,15 +66,13 @@
     } else if ([segue.identifier isEqualToString:@"jumpToEdit"]) {
 //        NSLog(@"%@", [(FSContantTableViewCell *)sender contant]);
         FSEditViewController * editVc = segue.destinationViewController;
+        editVc.contant = sender;
         editVc.delegate = self;
-        editVc.editingCell = sender;
-        editVc.initialContant = [(FSContantTableViewCell *)sender contant];
     }
-    
 }
 
 #pragma mark FSEditViewController代理方法
-- (void)editViewController:(FSEditViewController *)editViewController contantEditWillDone:(FSContantTableViewCell *)cell {
+- (void)editViewController:(FSEditViewController *)editViewController didEditContant:(FSContant *)contant {
     NSLog(@"xxx");
     [self.tableView reloadData];
 }
@@ -80,9 +80,7 @@
 #pragma mark FSAddViewController代理方法
 - (void)addViewController:(FSAddViewController *)addViewController addContant:(FSContant *)contant {
     //添加一行
-    FSContantTableViewCell *contantTableViewCell = [FSContantTableViewCell contantTableViewCellWithContant:contant];
-    contantTableViewCell.delegate = self;
-    [self.contantCells addObject:contantTableViewCell];
+    [self.contants addObject:contant];
     [self.tableView reloadData];
 }
 
@@ -90,31 +88,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.contantCells.count;
+    return self.contants.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *ID = @"Cell";
-//    FSContantTableViewCell *contantTableViewCell = [tableView dequeueReusableCellWithIdentifier:ID];
-//    if (contantTableViewCell == nil) {
-//        contantTableViewCell = [FSContantTableViewCell contantTableViewCellWithName:[_contantCells[indexPath.row] name] phone:[_contants[indexPath.row] phone]];
-//    }
-//    
-//    contantTableViewCell.nameLable.text = [_contants[indexPath.row] name];
-//    
-//    contantTableViewCell.phoneLable.text = [_contants[indexPath.row] phone];
+    FSContantTableViewCell *cell = [FSContantTableViewCell contantTableViewCellWithTableView:tableView];
     
-    FSContantTableViewCell *contantTableViewCell = _contantCells[indexPath.row];
-    [contantTableViewCell refresh];
-//    NSLog(@"yyy");
-    return contantTableViewCell;
+    cell.contant = _contants[indexPath.row];
+    
+    return cell;
 }
 
-#pragma mark - FSContantTableViewCell代理方法
-- (void)contantTableViewCell:(FSContantTableViewCell *)contantTableViewCell clickWithContant:(FSContant *)contant {
-//    NSLog(@"%s %@", __func__, contant);
-    [self performSegueWithIdentifier:@"jumpToEdit" sender:contantTableViewCell];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"jumpToEdit" sender:_contants[indexPath.row]];
 }
 
 /*

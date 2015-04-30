@@ -14,15 +14,13 @@
 
 @protocol FSEditViewControllerDelegate <NSObject>
 
-- (void)editViewController:(FSEditViewController *)editViewController contantEditWillDone:(FSContantTableViewCell *)cell;
+- (void)editViewController:(FSEditViewController *)editViewController didEditContant:(FSContant *)contant;
 
 @end
 
 @interface FSEditViewController : UIViewController
 
-@property (strong, nonatomic) FSContantTableViewCell *editingCell;
-
-@property (strong, nonatomic) FSContant *initialContant;
+@property (strong, nonatomic) FSContant *contant;
 
 @property (strong, nonatomic) id<FSEditViewControllerDelegate> delegate;
 

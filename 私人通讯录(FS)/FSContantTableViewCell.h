@@ -9,22 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FSContant.h"
 
-@class FSContantTableViewCell;
-
-@protocol FSContantTableViewCellDelegate <NSObject>
-
-- (void)contantTableViewCell:(FSContantTableViewCell *)contantTableViewCell clickWithContant:(FSContant *)contant;
-
-@end
-
 @interface FSContantTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) FSContant *contant;
 
-@property (strong, nonatomic) id<FSContantTableViewCellDelegate> delegate;
-
-+ (instancetype)contantTableViewCellWithContant:(FSContant *)contant;
-
-- (void)refresh;
++ (instancetype)contantTableViewCellWithTableView:(UITableView *)tableView;
 
 @end

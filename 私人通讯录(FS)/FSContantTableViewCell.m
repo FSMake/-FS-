@@ -10,33 +10,22 @@
 
 @interface FSContantTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLable;
-
-@property (weak, nonatomic) IBOutlet UILabel *phoneLable;
-
 @end
 
 @implementation FSContantTableViewCell
 
-+ (instancetype)contantTableViewCellWithContant:(FSContant *)contant {
-    FSContantTableViewCell *contantTableViewCell = [[[NSBundle mainBundle] loadNibNamed:@"FSContantTableViewCell" owner:nil options:nil] lastObject];
+- (void)setContant:(FSContant *)contant {
+    _contant = contant;
+    self.textLabel.text = contant.name;
+    self.detailTextLabel.text = contant.phone;
+}
 
-    contantTableViewCell.contant = contant;
-    contantTableViewCell.nameLable.text = contant.name;
-    contantTableViewCell.phoneLable.text = contant.name;
++ (instancetype)contantTableViewCellWithTableView:(UITableView *)tableView {
+    static NSString *ID = @"ContantCell";
+    
+    FSContantTableViewCell *contantTableViewCell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
     return contantTableViewCell;
-}
-
-- (IBAction)Click:(id)sender {
-    NSLog(@"name:%@", _nameLable.text);
-    if ([_delegate respondsToSelector:@selector(contantTableViewCell:clickWithContant:)]) {
-        [_delegate contantTableViewCell:self clickWithContant:_contant];
-    }
-}
-
-- (void)refresh {
-    self.nameLable.text = self.contant.name;
-    self.phoneLable.text = self.contant.phone;
 }
 
 @end

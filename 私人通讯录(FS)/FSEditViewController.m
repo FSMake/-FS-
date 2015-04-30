@@ -24,8 +24,8 @@
     [_nameField addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     [_phoneField addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     
-    _nameField.text = _initialContant.name;
-    _phoneField.text = _initialContant.phone;
+    _nameField.text = _contant.name;
+    _phoneField.text = _contant.phone;
     
     //先判断登陆按钮是否可点
     [self textChange];
@@ -38,12 +38,12 @@
 }
 
 - (IBAction)doneClick:(id)sender {
-    if ([_delegate respondsToSelector:@selector(editViewController:contantEditWillDone:)]) {
+    if ([_delegate respondsToSelector:@selector(editViewController:didEditContant:)]) {
 //        FSContant *contant = [FSContant contantWithName:_nameField.text phone:_phoneField.text];
-        _editingCell.contant.name = _nameField.text;
-        _editingCell.contant.phone = _phoneField.text;
+        _contant.name = _nameField.text;
+        _contant.phone = _phoneField.text;
         
-        [_delegate editViewController:self contantEditWillDone:_editingCell];
+        [_delegate editViewController:self didEditContant:_contant];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

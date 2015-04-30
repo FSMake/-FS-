@@ -14,7 +14,6 @@
 		47A401431AEE6F1A00DC7D71 /* FSAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A401421AEE6F1A00DC7D71 /* FSAddViewController.m */; };
 		47A4014A1AEE740000DC7D71 /* FSContant.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A401491AEE740000DC7D71 /* FSContant.m */; };
 		47A4014F1AEE798900DC7D71 /* FSContantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4014D1AEE798900DC7D71 /* FSContantTableViewCell.m */; };
-		47A401501AEE798900DC7D71 /* FSContantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4014E1AEE798900DC7D71 /* FSContantTableViewCell.xib */; };
 		47A401531AEE80B700DC7D71 /* FSEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A401521AEE80B700DC7D71 /* FSEditViewController.m */; };
 		47D90B101AEDDA7C005A0BDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D90B0F1AEDDA7C005A0BDB /* main.m */; };
 		47D90B131AEDDA7C005A0BDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D90B121AEDDA7C005A0BDB /* AppDelegate.m */; };
@@ -49,7 +48,6 @@
 		47A401491AEE740000DC7D71 /* FSContant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContant.m; sourceTree = "<group>"; };
 		47A4014C1AEE798900DC7D71 /* FSContantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSContantTableViewCell.h; sourceTree = "<group>"; };
 		47A4014D1AEE798900DC7D71 /* FSContantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContantTableViewCell.m; sourceTree = "<group>"; };
-		47A4014E1AEE798900DC7D71 /* FSContantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSContantTableViewCell.xib; sourceTree = "<group>"; };
 		47A401511AEE80B700DC7D71 /* FSEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSEditViewController.h; sourceTree = "<group>"; };
 		47A401521AEE80B700DC7D71 /* FSEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSEditViewController.m; sourceTree = "<group>"; };
 		47D90B0A1AEDDA7C005A0BDB /* 私人通讯录(FS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "私人通讯录(FS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +117,6 @@
 			children = (
 				47A4014C1AEE798900DC7D71 /* FSContantTableViewCell.h */,
 				47A4014D1AEE798900DC7D71 /* FSContantTableViewCell.m */,
-				47A4014E1AEE798900DC7D71 /* FSContantTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -296,7 +293,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47A401501AEE798900DC7D71 /* FSContantTableViewCell.xib in Resources */,
 				47D90B191AEDDA7C005A0BDB /* Main.storyboard in Resources */,
 				47A4013F1AEE67C200DC7D71 /* MBProgressHUD.bundle in Resources */,
 				47D90B1E1AEDDA7C005A0BDB /* LaunchScreen.xib in Resources */,
