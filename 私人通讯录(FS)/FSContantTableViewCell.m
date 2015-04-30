@@ -10,9 +10,21 @@
 
 @interface FSContantTableViewCell ()
 
+@property (nonatomic, strong) UIView *separator;
+
 @end
 
 @implementation FSContantTableViewCell
+
+- (UIView *)separator {
+    if (_separator == nil) {
+        _separator = [[UIView alloc] init];
+        _separator.backgroundColor = [UIColor blackColor];
+        _separator.alpha = 0.2;
+        [self.contentView addSubview:_separator];
+    }
+    return _separator;
+}
 
 - (void)setContant:(FSContant *)contant {
     _contant = contant;
@@ -26,6 +38,15 @@
     FSContantTableViewCell *contantTableViewCell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     return contantTableViewCell;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGFloat separatorH = 1;
+    CGFloat separatorW = self.bounds.size.width;
+    CGFloat separatorX = 0;
+    CGFloat separatorY = self.bounds.size.height - separatorH;
+    self.separator.frame = CGRectMake(separatorX, separatorY, separatorW, separatorH);
 }
 
 @end

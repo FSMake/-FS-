@@ -32,6 +32,7 @@
     [super viewDidLoad];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 44;
 }
 
 //注销点击
