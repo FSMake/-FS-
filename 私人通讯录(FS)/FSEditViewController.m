@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UIButton *doneBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editBarBtn;
 
 @end
 
@@ -30,11 +31,28 @@
     //先判断登陆按钮是否可点
     [self textChange];
     
-    [_nameField becomeFirstResponder];
+//    [_nameField becomeFirstResponder];
 }
 
 - (void)textChange {
     _doneBtn.enabled = _nameField.text.length && _phoneField.text.length;
+}
+- (IBAction)editDone:(UIBarButtonItem *)sender {
+    if ([sender.title isEqualToString:@"编辑"]) {
+        sender.title = @"取消";
+        _nameField.enabled = YES;
+        _phoneField.enabled = YES;
+        _doneBtn.hidden = NO;
+        [_phoneField becomeFirstResponder];
+    } else {
+        sender.title = @"编辑";
+        _nameField.text = _contant.name;
+        _phoneField.text = _contant.phone;
+        [self.view endEditing:YES];
+        _nameField.enabled = NO;
+        _phoneField.enabled = NO;
+        _doneBtn.hidden = YES;
+    }
 }
 
 - (IBAction)doneClick:(id)sender {
