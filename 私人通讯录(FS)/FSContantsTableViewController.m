@@ -11,6 +11,8 @@
 #import "FSContantTableViewCell.h"
 #import "FSEditViewController.h"
 
+#define FSContantsFilePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"contants.data"]
+
 //添加git
 
 @interface FSContantsTableViewController () <UIActionSheetDelegate, FSAddViewControllerDeldgate, FSEditViewControllerDelegate>
@@ -23,7 +25,10 @@
 
 - (NSMutableArray *)contants {
     if (_contants == nil) {
-        _contants = [NSMutableArray array];
+        _contants = [NSKeyedUnarchiver unarchiveObjectWithFile:FSContantsFilePath];
+        if (_contants == nil) {
+            _contants = [NSMutableArray array];
+        }
     }
     return _contants;
 }
@@ -69,6 +74,8 @@
 #pragma mark FSEditViewController代理方法
 - (void)editViewController:(FSEditViewController *)editViewController didEditContant:(FSContant *)contant {
     [self.tableView reloadData];
+    //保存联系人列表
+    [NSKeyedArchiver archiveRootObject:_contants toFile:FSContantsFilePath];
 }
 
 #pragma mark FSAddViewController代理方法
@@ -76,6 +83,9 @@
     //添加一行
     [self.contants addObject:contant];
     [self.tableView reloadData];
+    
+    //保存联系人列表
+    [NSKeyedArchiver archiveRootObject:_contants toFile:FSContantsFilePath];
 }
 
 #pragma mark - Table view data source

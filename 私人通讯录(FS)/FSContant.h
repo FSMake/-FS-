@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FSContant : NSObject
+@interface FSContant : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString *name;
 
